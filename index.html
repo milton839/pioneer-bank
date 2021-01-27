@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <div class="deposit status">
                     <h4>Deposit</h4>
-                    <h2>$ 00</h2>
+                    <h2>$ <span id="currentDeposit">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -41,15 +41,49 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit_area">
+                    <h4>Deposit</h4>
+                <input id="addDepositAmount" type="text" class="form-control" placeholder="$ Amount you want to Deposit">
+                <br>
+                <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit_area">
+                    <h4>Withdraw</h4>
+                <input id="" type="text" class="form-control" placeholder="$ Amount you want to Withdraw">
+                <br>
+                <button class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
+        //login button area
         const loginBtn = document.getElementById('login');
         loginBtn.addEventListener('click',function(){
             var loginArea = document.getElementById("login_area");
             loginArea.style.display = "none";
             const transactionArea = document.getElementById("transaction_area");
             transactionArea.style.display = "block";
-        })
+        });
+
+        //Deposit button area
+        const depositArea = document.getElementById("addDeposit");
+        depositArea.addEventListener('click',function(){
+            var depositAmount = document.getElementById('addDepositAmount').value;
+            const depositNumber = parseFloat(depositAmount);
+
+            const currentDepositArea = document.getElementById('currentDeposit').innerText;
+            var currentDepositNumber = parseFloat(currentDepositArea);
+            var totalDeposit = depositNumber + currentDepositNumber;
+
+            document.getElementById('currentDeposit').innerText = totalDeposit;
+            document.getElementById('addDepositAmount').value = "";
+        });
     </script>
 </body>
 </html>
